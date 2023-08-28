@@ -9,6 +9,7 @@ pkg_check_modules(avutil libavutil REQUIRED)
 pkg_check_modules(swscale libswscale REQUIRED)
 pkg_check_modules(video4linux libv4l2 REQUIRED)
 # OPENCV
+find_package(Eigen3 REQUIRED)
 find_package(OpenCV REQUIRED)
 # Reporting
 if(avcodec_FOUND)

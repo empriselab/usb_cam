@@ -159,6 +159,10 @@ UsbCam::UsbCam():
         camera_info_msg.header.frame_id = img_msg->header.frame_id;
         camera_info_msg.width = image_width;
         camera_info_msg.height = image_height;
+        std::vector<double> D_vect = {-0.22383069, 0.21004822, 0.0144695, -0.0039065, -0.46875868};
+        camera_info_msg.D = D_vect;
+        boost::array<double, 9UL> K_mat = {273.61529792, 0., 136.23730893, 0., 277.86760693, 136.07502622, 0., 0., 1.};
+        camera_info_msg.K = K_mat;
         camera_info->setCameraInfo(camera_info_msg);
     }
 

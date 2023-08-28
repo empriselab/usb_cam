@@ -1,6 +1,12 @@
 <launch>
   <arg name="image_view" default="false" />
 
+  <arg name="camera_link_frame_id" default="hand_camera_link"
+       doc="Camera link frame identifier." />
+
+  <arg name="usb_frame_id" default="head_camera"
+       doc="usb camera frame identifier." />
+
   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
       <rosparam command="load" file="$(find usb_cam)/config/usb_cam.yml"/>
   </node>
@@ -9,4 +15,6 @@
     <remap from="image" to="/usb_cam/image_raw"/>
     <param name="autosize" value="true" />
   </node>
+
+  <node name="rgb_to_therm_tf" pkg="tf2_ros" type="static_transform_publisher" args="-0.0325 0.0245 0.006473 0 0 0 $(arg camera_link_frame_id) $(arg usb_frame_id)" />
 </launch>
